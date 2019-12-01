@@ -207,12 +207,13 @@ describe('fallback', () => {
     done();
   });
 
-  it('should fail if no vhost can be detected', async done => {
-    expect.assertions(1);
+  it('should redirect to fallback if no vhost can be detected', async done => {
+    expect.assertions(2);
     const res = await request(app)
       .get('/')
       .send();
-    expect(res.statusCode).toStrictEqual(404);
+    expect(res.statusCode).toStrictEqual(301);
+    expect(res.header['location']).toStrictEqual('https://pik.app');
     done();
   });
 });
