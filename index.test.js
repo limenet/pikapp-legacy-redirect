@@ -216,4 +216,15 @@ describe('fallback', () => {
     expect(res.header['location']).toStrictEqual('https://pik.app');
     done();
   });
+
+  it('should redirect to fallback if no vhost is specified', async done => {
+    expect.assertions(2);
+    const res = await request(app)
+      .get('/')
+      .set('Host', 'pikapp.ch')
+      .send();
+    expect(res.statusCode).toStrictEqual(301);
+    expect(res.header['location']).toStrictEqual('https://pik.app');
+    done();
+  });
 });
