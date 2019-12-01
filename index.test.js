@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-test-callback */
 const request = require('supertest');
 const app = require('./index');
 
